@@ -5,7 +5,7 @@ import { AuthContext } from '../Provider/AuthContext';
 export default function ForgetPassword() {
 
 
-    const { handlePassword } = useContext(AuthContext)
+    const { handlePassword, mode } = useContext(AuthContext)
     const [error, setError] = useState('')
     const [success, setSuccess] = useState("")
     // Swal.fire({
@@ -22,7 +22,7 @@ export default function ForgetPassword() {
 
 
         const email = e.target.email.value
-       
+
         handlePassword(email)
             .then(() => {
                 setSuccess("Check Your Email please")
@@ -35,7 +35,7 @@ export default function ForgetPassword() {
     };
 
     return (
-        <form onSubmit={handleUpdate} className="max-w-sm mx-auto mt-15 p-6 bg-white shadow-md rounded-xl border border-teal-300">
+        <form onSubmit={handleUpdate} className={`max-w-sm mx-auto  p-6  shadow-md rounded-xl border ${mode ? "bg-netural-800" : "bg-white "} border-teal-300`}>
             <h2 className="text-2xl font-bold text-teal-700 mb-4">Update Password</h2>
             <p className='text-red-500 py-2'> {
                 error && error

@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { motion } from "framer-motion";
+import { AuthContext } from "../Provider/AuthContext";
 
 const VoteComponents = () => {
+
+    const {mode} = useContext(AuthContext)
     const [votes, setVotes] = useState([
         {
             title: "🔥 Best platform ever!",
@@ -21,7 +24,7 @@ const VoteComponents = () => {
     ]);
 
     return (
-        <section className="bg-slate-900 px-4 py-12">
+        <section className={`${mode ? "bg-black":"bg-slate-900"} px-4 py-12 -mb-13`}>
             <div className="mx-auto grid max-w-4xl grid-cols-1 gap-2 md:grid-cols-[1fr_400px] md:gap-12">
                 <Options votes={votes} setVotes={setVotes} />
                 <Bars votes={votes} />

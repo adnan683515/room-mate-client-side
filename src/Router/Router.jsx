@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
                 hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
                     <span className="loading loading-spinner text-success"></span>
                 </div>,
-                loader: () => fetch('http://localhost:4000/allMates'),
+                loader: () => fetch('https://roomate-server-side.vercel.app/allMates'),
                 Component: Home
 
             }, {
@@ -63,7 +63,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/mylisting/:email",
-                loader: ({ params }) => fetch(`http://localhost:4000/mylisting/${params?.email}`),
+                loader: ({ params }) => fetch(`https://roomate-server-side.vercel.app/mylisting/${params?.email}`),
                 hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
                     <span className="loading loading-spinner text-success"></span>
                 </div>,
@@ -77,14 +77,14 @@ export const router = createBrowserRouter([
                 hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
                     <span className="loading loading-spinner text-success"></span>
                 </div>,
-                loader: () => fetch('http://localhost:4000/allMatesall'),
+                loader: () => fetch('https://roomate-server-side.vercel.app/allMatesall'),
                 element: <BrowseListing></BrowseListing>
 
 
             }, {
-                // http://localhost:4000/allMates/${params?.id}
+            
                 path: "/updateroomMate/:id",
-                loader: (({ params }) => fetch(`http://localhost:4000/allMatess/${params?.id}`)),
+                loader: (({ params }) => fetch(`https://roomate-server-side.vercel.app/allMatess/${params?.id}`)),
                 hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
                     <span className="loading loading-spinner text-success"></span>
                 </div>,

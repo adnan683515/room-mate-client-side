@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
 
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { AuthContext } from "../Provider/AuthContext";
 
 const Hero = () => {
+
+    const {mode} = useContext(AuthContext)
     return (
-        <div className="w-full  ">
+        <div className={`w-full  ${mode ? "bg-black text-white" : "bg-white text-black"}`}>
             <section className="lg:w-[96%] w-[90%]   py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8  mx-auto">
                 <div>
                     <span className="block mb-4 text-xl md:text-sm font-medium">
@@ -13,7 +16,7 @@ const Hero = () => {
                     <h3 className="text-3xl font-semibold">
                         Your Next Roommate is Just <br /> a Click  <span className="text-teal-600" >Away</span>
                     </h3>
-                    <p className="text-base md:text-lg text-slate-700 my-4 md:my-6">
+                    <p className={`${mode ? "text-white" : "text-base"} md:text-lg text-slate-700 my-4 md:my-6`}>
                         Tired of flaky <span className="text-3xl font-semibold text-teal-600">roommates</span>?
                         We help you find trustworthy, like-minded people to share your space with. No awkward surprises. Just good vibes and clean kitchens.
 
@@ -144,7 +147,7 @@ const ShuffleGrid = () => {
     };
 
     return (
-        <div className="grid grid-cols-4 grid-rows-4 h-[450px] gap-1">
+        <div className="grid  grid-cols-4 grid-rows-4 h-[450px] gap-1">
             {squares.map((sq) => sq)}
         </div>
     );

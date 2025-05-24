@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 const DisplayMylisting = ({ listdata, alldata, setAlldata }) => {
 
 
-    // http://localhost:4000/roommate/682da1f85da4ce1102665eaa
+    // https://roomate-server-side.vercel.app/roommate/682da1f85da4ce1102665eaa
 
     const handleDelete = (id) => {
 
@@ -29,7 +29,7 @@ const DisplayMylisting = ({ listdata, alldata, setAlldata }) => {
                     icon: "success"
                 });
 
-                fetch(`http://localhost:4000/roommate/${id}`, {
+                fetch(`https://roomate-server-side.vercel.app/roommate/${id}`, {
                     method: "DELETE"
                 })
                     .then((res) => res.json())

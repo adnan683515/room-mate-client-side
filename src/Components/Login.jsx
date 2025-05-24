@@ -11,7 +11,7 @@ const Login = () => {
     const [show, setShow] = useState(false)
     const [error, setError] = useState('')
     const navigate = useNavigate()
-    const { login, googleSingin } = useContext(AuthContext)
+    const { login, googleSingin, mode } = useContext(AuthContext)
     useEffect(() => {
         document.getElementById('titles').innerText = "Login Page"
     }, [])
@@ -66,7 +66,7 @@ const Login = () => {
     }
 
     return (
-        <div className='my-10'>
+        <div className='py-10 -mb-13'>
             <div className='flex lg:justify-around lg:flex-row flex-col'>
                 <div className='flex justify-center  items-center'>
                     <div style={{
@@ -86,17 +86,18 @@ const Login = () => {
 
                 </div>
 
-                <div className="sm:w-[80%] md:w-[35%] w-[98%] mx-auto sm:mt-0 mt-10 hover:scale-95 duration-700  border border-teal-200 p-8 rounded-tl-4xl space-y-3 rounded-br-4xl bg-gray-200 dark:text-gray-800">
+                <div className={`sm:w-[80%] md:w-[35%] w-[98%] mx-auto sm:mt-0 mt-10 hover:scale-95 duration-700  border border-teal-200 p-8 rounded-tl-4xl space-y-3 rounded-br-4xl ${mode ? "bg-black" : "bg-gray-200 "} dark:text-gray-800 `}>
                     <h1 className="text-2xl font-bold text-center text-teal-600">Login</h1>
                     <p className='text-red-500 my-1'> {error ? error : ''} </p>
-                    <form onSubmit={handleLoginFrom} className="space-y-6 sm:mt-0 mt-10">
+                    <form onSubmit={handleLoginFrom} className="space-y-6 sm:mt-0 mt-10  ">
                         <div className="space-y-1 text-sm">
                             <label htmlFor="username" className="block dark:text-gray-600">Your Email</label>
-                            <input required type="email" name="email" id="email" placeholder="Your Email" className="w-full px-4 py-3 rounded-md dark:border-gray-300 bg-white dark:text-gray-800 focus:dark:border-fuchsia-600" />
+                            <input required type="email" name="email" id="email" placeholder="Your Email" className={`
+                                w-full px-4 py-3 rounded-md dark:border-gray-300 bg-white ${mode ? "text-black" : "text-black"} focus:dark:border-fuchsia-600`} />
                         </div>
                         <div className="space-y-1 text-sm">
                             <label htmlFor="password" className="block dark:text-gray-600">Password</label>
-                            <input required type={show ? 'text' : 'password'} name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 bg-white dark:text-gray-800 focus:dark:border-fuchsia-600" />
+                            <input required type={show ? 'text' : 'password'} name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 bg-white text-black focus:dark:border-fuchsia-600" />
                             <div className="flex justify-end text-xs dark:text-gray-600">
                                 <Link to={'/passwordForget'} rel="noopener noreferrer" href="#">Forgot Password?</Link>
                             </div>
@@ -105,7 +106,7 @@ const Login = () => {
                                 <span>show password</span>
                             </div>
                         </div>
-                        <button className="block w-full p-3 text-center rounded-sm dark:text-gray-50 bg-white text-teal-600 font-semibold">Sign in</button>
+                        <button className={`block w-full p-3 text-center rounded-sm dark:text-gray-50 ${mode ? "bg-teal-600 text-white" : "bg-white"} text-teal-600 font-semibold`}>Sign in</button>
                     </form>
 
                     <div className="flex  justify-center ">

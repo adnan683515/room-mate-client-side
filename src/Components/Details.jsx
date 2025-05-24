@@ -15,9 +15,9 @@ export const Details = () => {
 
     const [like, setLike] = useState(false)
     const [detailsData, setDetailsDta] = useState({})
-    const { user, loading } = useContext(AuthContext)
+    const { user, loading, mode } = useContext(AuthContext)
 
-    const { photo, title, des, location, rent, roomtype, life, Availability, _id, number, email ,username } = detailsData
+    const { photo, title, des, location, rent, roomtype, life, Availability, _id, number, email, username } = detailsData
 
     console.log(user?.email, email)
 
@@ -26,7 +26,7 @@ export const Details = () => {
     }, [])
 
     useEffect(() => {
-        fetch(`http://localhost:4000/allMatess/${params?.id}`)
+        fetch(`https://roomate-server-side.vercel.app/allMatess/${params?.id}`)
             .then((res) => res.json())
             .then((data) => {
                 setDetailsDta(data)
@@ -36,7 +36,7 @@ export const Details = () => {
             })
     }, [like])
     useEffect(() => {
-        fetch(`http://localhost:4000/likes/${params?.id}/${user?.email}`)
+        fetch(`https://roomate-server-side.vercel.app/likes/${params?.id}/${user?.email}`)
             .then((res) => res.json())
             .then((result) => {
                 console.log(result)
@@ -53,7 +53,7 @@ export const Details = () => {
 
     const handleUpdateLike = (id) => {
         const updateData = detailsData
-        fetch(`http://localhost:4000/roommate/${id}`, {
+        fetch(`https://roomate-server-side.vercel.app/roommate/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-type": "application/json"
@@ -71,7 +71,7 @@ export const Details = () => {
                     setLike(!like)
                     // const email = user?.email
                     // const likeinfo = { roommate_id: id, email }
-                    // fetch('http://localhost:4000/likes', {
+                    // fetch('https://roomate-server-side.vercel.app/likes', {
                     //     method: "POST",
                     //     headers: {
                     //         "Content-type": "application/json"
@@ -95,40 +95,40 @@ export const Details = () => {
     }
 
     return (
-        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div className="px-4  py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 -mb-13">
             <div className="grid gap-5 row-gap-8 lg:grid-cols-2">
                 <div className="flex flex-col justify-center">
                     <div className="max-w-xl mb-6">
-                        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+                        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight  sm:text-4xl sm:leading-none">
                             {title}
                             <br className="hidden md:block" />
 
 
                         </h2>
-                        <p className="text-base text-gray-700 md:text-lg">
+                        <p className="text-base  md:text-lg">
                             {des}
                         </p>
                     </div>
                     <div className="grid gap-5 row-gap-8 sm:grid-cols-2">
-                        <div className="bg-white border-l-4 shadow-sm border-deep-purple-accent-400">
+                        <div className=" border-l-4 shadow-sm border-deep-purple-accent-400">
                             <div className="h-full p-5 border border-l-0 rounded-r">
                                 <h6 className="mb-2 font-semibold leading-5">
                                     Location: {location}
                                 </h6>
-                                <p className="text-sm text-gray-900">
+                                <p className="text-sm ">
                                     Rent Amount: {rent}
                                 </p>
-                                <p className="text-sm text-gray-900">
+                                <p className="text-sm">
                                     Room Type: {roomtype}
                                 </p>
                             </div>
                         </div>
-                        <div className="bg-white border-l-4 shadow-sm border-deep-purple-accent-400">
+                        <div className=" border-l-4 shadow-sm border-deep-purple-accent-400">
                             <div className="h-full p-5 border border-l-0 rounded-r">
                                 <h6 className="mb-2 font-semibold leading-5">
-                                   username: {username}
+                                    username: {username}
                                 </h6>
-                                <p className="text-sm text-gray-900">
+                                <p className="text-sm ">
                                     Life Style: {life}
                                 </p>
                                 <p className="text-sm my-2 rounded-md  bg-green-500 px-2 py-2">

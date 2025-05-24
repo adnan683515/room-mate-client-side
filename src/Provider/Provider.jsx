@@ -9,6 +9,7 @@ const Provider = ({ children }) => {
 
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null)
+    const [mode,setMode] = useState(false)
     const handleRegister = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
@@ -63,7 +64,9 @@ const Provider = ({ children }) => {
         user,
         handleLogout,
         googleSingin,
-        handlePassword
+        handlePassword,
+        mode,
+        setMode
     }
     return (
         <AuthContext value={info} >

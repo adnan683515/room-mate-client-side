@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 const AddToRoomMate = () => {
 
 
-    const { user } = useContext(AuthContext)
+    const { user,mode } = useContext(AuthContext)
 
     useEffect(() => {
         document.getElementById('titles').innerText = "AddToRoomMate Page"
@@ -23,7 +23,7 @@ const AddToRoomMate = () => {
 
 
 
-        fetch('http://localhost:4000/roommate', {
+        fetch('https://roomate-server-side.vercel.app/roommate', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -56,9 +56,9 @@ const AddToRoomMate = () => {
         <div>
 
 
-            <section className="p-6 sm:w-[70%]   mx-auto  dark:text-gray-900">
-                <form onSubmit={handleAddtoFindForm} className="container rounded-bl-4xl rounded-tr-4xl w-full bg-gray-200  flex flex-col mx-auto space-y-12">
-                    <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-gray-50">
+            <section className="py-15 sm:w-[70%]   mx-auto -mb-13  ">
+                <form  onSubmit={handleAddtoFindForm} className={`container rounded-bl-4xl rounded-tr-4xl w-full  ${mode ? "bg-neutral-800 text-white": "bg-gray-200"}  flex flex-col mx-auto space-y-12`}>
+                    <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm ">
                         <div className="space-y-2 col-span-full lg:col-span-1">
                             <p className="font-medium">Your Inormation</p>
                             <p className="text-xs">We’ll use your preferences to help match you with the perfect roommate. Stay tuned — your future bestie might be just around the corner 👀✨</p>
@@ -66,20 +66,20 @@ const AddToRoomMate = () => {
                         <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="title" className="text-sm">Title </label>
-                                <input required name='title' id="title" type="text" placeholder="Enter the title" className="w-full rounded-md bg-white px-2 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-fuchsia-600  dark:border-gray-300" />
+                                <input required name='title' id="title" type="text" placeholder="Enter the title" className="w-full bg-white text-black rounded-md  px-2 py-2 focus:ring focus:ring-opacity-75 " />
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="location" className="text-sm">Location</label>
-                                <input required name='location' id="location" type="text" placeholder="location your place" className="w-full rounded-md focus:ring bg-white px-2 py-2 focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-fuchsia-600 dark:border-gray-300" />
+                                <input required name='location' id="location" type="text" placeholder="location your place" className="w-full text-black rounded-md focus:ring bg-white px-2 py-2 focus:ring-opacity-75   " />
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="rent" className="text-sm">Rent Ammount</label>
-                                <input required name='rent' id="rent" type="text" placeholder="Rent ammount of room" className="w-full rounded-md focus:ring bg-white px-2 py-2 focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-fuchsia-600 dark:border-gray-300" />
+                                <input required name='rent' id="rent" type="text" placeholder="Rent ammount of room" className="w-full text-black rounded-md focus:ring bg-white px-2 py-2 focus:ring-opacity-75 " />
                             </div>
 
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="rtype" className="text-sm">Room Type</label>
-                                <select required name='roomtype' defaultValue="Pick a Runtime" className="select w-full ">
+                                <select required name='roomtype' defaultValue="Pick a Runtime" className="select w-full text-black">
                                     <option selected disabled={true}>Select Your Room Type</option>
                                     <option value={"Single"} >Single</option>
                                     <option value={"Double Room"} >Double Room</option>
@@ -91,7 +91,7 @@ const AddToRoomMate = () => {
 
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="life" className="text-sm">Life Styles</label>
-                                <select required name='life' defaultValue="Pick a Runtime" className="select w-full ">
+                                <select required name='life' defaultValue="Pick a Runtime" className="select w-full text-black">
                                     <option disabled={true}>Select Your Life Styles</option>
                                     <option value={"🐱 Cat lover"} >🐱 Cat lover</option>
                                     <option value={"Non-smoker"} >Non-smoker</option>
@@ -102,7 +102,7 @@ const AddToRoomMate = () => {
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="life" className="text-sm">Availability </label>
-                                <select required name='Availability' defaultValue="Pick a Runtime" className="select w-full ">
+                                <select required name='Availability' defaultValue="Pick a Runtime" className="select w-full text-black ">
                                     <option disabled={true}>Select Your room  space Availability </option>
                                     <option value={"available"} >available</option>
 
@@ -112,19 +112,19 @@ const AddToRoomMate = () => {
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="number" className="text-sm">Contact Number</label>
-                                <input required name='number' id="rent" type="text" placeholder="your contact number" className="w-full rounded-md focus:ring bg-white px-2 py-2 focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-fuchsia-600 dark:border-gray-300" />
+                                <input required name='number' id="rent" type="text" placeholder="your contact number" className="w-full rounded-md focus:ring bg-white px-2 py-2 focus:ring-opacity-75  " />
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="des" className="text-sm">Description</label>
-                                <textarea required name='des' id="des" type="text" placeholder="Your description" className="w-full rounded-md focus:ring bg-white px-2 py-2 focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-fuchsia-600 dark:border-gray-300" />
+                                <textarea required name='des' id="des" type="text" placeholder="Your description" className="w-full text-black rounded-md focus:ring bg-white px-2 py-2 focus:ring-opacity-75  " />
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="email" className="text-sm">Email</label>
-                                <input value={user?.email} id="email" type="email" placeholder="Email" className="w-full rounded-md focus:ring px-2 py-2 bg-white focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-fuchsia-600 dark:border-gray-300" />
+                                <input value={user?.email} id="email" type="email" placeholder="Email" className="w-full text-black rounded-md focus:ring px-2 py-2 bg-white focus:ring-opacity-75  " />
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="username" className="text-sm">username</label>
-                                <input required value={user?.displayName} id="username" type="text" placeholder="" className="w-full rounded-md  bg-white px-2 py-2 focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-fuchsia-600 dark:border-gray-300" />
+                                <input required value={user?.displayName} id="username" type="text" placeholder="" className="w-full text-black rounded-md  bg-white px-2 py-2 focus:ring focus:ring-opacity-75  " />
                             </div>
 
 

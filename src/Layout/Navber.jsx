@@ -1,20 +1,38 @@
 import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthContext';
+import { Bounce, toast } from 'react-toastify';
+
 
 const Navber = () => {
 
-    const { user, loading, setUser, handleLogout } = useContext(AuthContext)
+    const { user, loading, setUser, handleLogout,mode,setMode } = useContext(AuthContext)
     const naviagte = useNavigate()
+
+    
 
 
     const logut = () => {
         handleLogout()
             .then(() => {
                 naviagte('/login'),
-                    setUser(null)
+                    setUser(null),
+                    toast.error('Logout Successfull!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        transition: Bounce,
+                    });
             })
     }
+
+ 
+
 
 
 
@@ -28,7 +46,7 @@ const Navber = () => {
     </>
     return (
         <div>
-            <div className="navbar bg-base-100 shadow-sm">
+            <div id='nv' className={`navbar ${mode ? 'bg-black text-white':'bg-white text-black' } bg-base-100 shadow-sm`}>
                 <div className="navbar-start">
                     <Link to={'/'} className='lg:block hidden'> <span className='text-xl font-semibold text-teal-600'>H</span>om<span className='text-xl font-semibold text-teal-600'>e</span> </Link>
                     <div className="dropdown lg:hidden">
@@ -54,10 +72,7 @@ const Navber = () => {
                 <div className="navbar-end ">
 
 
-
-
-
-
+                    <button onClick={()=>setMode(!mode)}  className='bg-black text-white mx-3'>click</button>
                     {
                         loading ? <div className='flex justify-center items-center'>
                             <span className="loading loading-spinner text-success"></span>

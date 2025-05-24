@@ -12,7 +12,7 @@ const SingUp = () => {
 
     const Navigate = useNavigate()
     const [error, setError] = useState('')
-    const { handleRegister, updateProfileUser, setUser, googleSingin } = useContext(AuthContext)
+    const { handleRegister, updateProfileUser, setUser, googleSingin ,mode } = useContext(AuthContext)
 
     useEffect(() => {
         document.getElementById('titles').innerText = "Singup Page"
@@ -90,38 +90,38 @@ const SingUp = () => {
 
 
     return (
-        <div className='my-5'>
-            <div className="sm:w-[60%] md:w-[35%] w-[90%] mx-auto sm:mt-0 mt-10 hover:scale-95 duration-700  border border-teal-200 p-8 rounded-tl-4xl space-y-3 rounded-br-4xl bg-gray-200 dark:text-gray-800">
+        <div className='py-10'>
+            <div className={`sm:w-[60%] md:w-[35%] w-[90%] mx-auto sm:mt-0 mt-10 hover:scale-95 duration-700  border border-teal-200 p-8 rounded-tl-4xl space-y-3 rounded-br-4xl ${mode ? "bg-netural-800" : "bg-gray-200 "} `}>
                 <h1 className="text-2xl font-bold text-center text-teal-600">Sign up</h1>
                 <p className='text-red-500 my-1'> {error ? error : ''} </p>
                 <form onSubmit={handleSingUpFrom} noValidate="" action="" className="space-y-6">
 
                     <div className="space-y-1 text-sm">
                         <label htmlFor="name" className="block dark:text-gray-600">Username</label>
-                        <input required type="text" name="name" id="name" placeholder="Your username" className="w-full px-4 py-3 rounded-md dark:border-gray-300 bg-white dark:text-gray-800 focus:dark:border-fuchsia-600" />
+                        <input required type="text" name="name" id="name" placeholder="Your username" className="w-full px-4 py-3 rounded-md dark:border-gray-300 bg-white  text-black focus:dark:border-fuchsia-600" />
                     </div>
                     <div className="space-y-1 text-sm">
                         <label htmlFor="email" className="block dark:text-gray-600">Email</label>
-                        <input required type="email" name="email" id="email" placeholder="Your Valid Email" className="w-full px-4 py-3 rounded-md dark:border-gray-300 bg-white dark:text-gray-800 focus:dark:border-fuchsia-600" />
+                        <input required type="email" name="email" id="email" placeholder="Your Valid Email" className="w-full px-4 py-3 rounded-md dark:border-gray-300 bg-white text-black focus:dark:border-fuchsia-600" />
 
                     </div>
 
                     <div className="space-y-1 text-sm">
                         <label htmlFor="photo" className="block dark:text-gray-600">Your Photo</label>
-                        <input required type="text" name="photo" id="photo" placeholder="your photo url" className="w-full px-4 py-3 rounded-md dark:border-gray-300 bg-white dark:text-gray-800 focus:dark:border-fuchsia-600" />
+                        <input required type="text" name="photo" id="photo" placeholder="your photo url" className="w-full px-4 py-3 rounded-md dark:border-gray-300 bg-white text-black focus:dark:border-fuchsia-600" />
 
                     </div>
 
                     <div className="space-y-1 text-sm">
                         <label htmlFor="password" className="block dark:text-gray-600">Password</label>
-                        <input required type={show ? 'text' : 'password'} name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 bg-white dark:text-gray-800 focus:dark:border-fuchsia-600" />
+                        <input required type={show ? 'text' : 'password'} name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 bg-white text-black focus:dark:border-fuchsia-600" />
 
                     </div>
 
                     <div className='space-y-1 text-sm'>
                         <input onClick={() => setShow(!show)} type="checkbox" id="" /> <span>show password</span>
                     </div>
-                    <button className="block w-full p-3 text-center rounded-sm dark:text-gray-50 bg-white text-teal-600 font-semibold">Sign up</button>
+                    <button className={`block w-full p-3 text-center rounded-sm dark:text-gray-50 ${mode? "bg-teal-600 text-white":"bg-white text-teal-600"} font-semibold`}>Sign up</button>
                 </form>
 
                 <div className="flex  justify-center ">

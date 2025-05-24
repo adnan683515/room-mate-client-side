@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const DisplayRoomMatesPost = ({ roommates }) => {
+const DisplayRoomMatesPost = ({ roommates, mode }) => {
     const { title, roomtype, location, photo } = roommates
 
 
@@ -9,7 +9,7 @@ const DisplayRoomMatesPost = ({ roommates }) => {
 
     return (
         <div>
-            <div className="max-w-sm mx-auto bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+            <div className={`max-w-sm mx-auto ${mode ? "bg-neutral-800  text-white " : "bg-white text-black"} rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300`}>
                 <div className="flex flex-col  p-6">
                     <div className='flex justify-center items-center'>
                         <img

@@ -1,13 +1,21 @@
+import { useContext } from "react";
+import { AuthContext } from './../Provider/AuthContext';
+
 export const ExtraFeature = () => {
+
+    const { mode } = useContext(AuthContext)
+
+
+
     return (
-        <div className="px-4 py-16 mx-auto   md:px-24 lg:px-8 lg:py-20">
+        <div className="px-4 py-16 mx-auto    md:px-24 lg:px-8 lg:py-20">
             <div className=" mb-10 md:mx-auto sm:text-center   md:mb-12">
                 <div>
                     <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
                         our  Best Platfrom
                     </p>
                 </div>
-                <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+                <h2 className={`max-w-lg ${mode ? "text-white" : "text-black"}  mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto`}>
                     <span className="relative inline-block">
                         <svg
                             viewBox="0 0 52 24"
@@ -35,7 +43,7 @@ export const ExtraFeature = () => {
                     </span>{' '}
                     Support Team’s got your back — anytime, anywhere 💬
                 </h2>
-                <p className="text-base text-gray-700 md:text-lg">
+                <p className={`${mode ? "text-white" : "text-gray-700 "} md:text-lg`}>
                     We're here to help — your <span className="text-3xl font-semibold text-teal-500">roommate</span> journey matters to us 💚
                 </p>
             </div>
@@ -63,7 +71,7 @@ export const ExtraFeature = () => {
                             <h6 className="mb-2 font-semibold leading-5">
                                 👨‍💻 Meet Our Support Team
                             </h6>
-                            <p className="text-sm text-gray-900">
+                            <p className="text-sm ">
                                 Our support team is here to make your experience smooth and stress-free. Whether you’re facing a tech hiccup, have a question, or just need a little guidance, we’ve got your back. Friendly, fast, and always ready to help — reach out anytime!
                             </p>
                             <hr className="w-full my-6 border-gray-300" />
@@ -91,7 +99,7 @@ export const ExtraFeature = () => {
                             <h6 className="mb-2 font-semibold leading-5">
                                 💬 Friendly & Fast Support
                             </h6>
-                            <p className="text-sm text-gray-900">
+                            <p className="text-sm ">
                                 Need help? Our awesome support team is always just a message away. We’re real humans (no bots!) and we actually care. Whether it’s a question, issue, or feedback — hit us up. We’re here for you!
                             </p>
                             <hr className="w-full my-6 border-gray-300" />
@@ -119,7 +127,7 @@ export const ExtraFeature = () => {
                             <h6 className="mb-2 font-semibold leading-5">
                                 📞 Always Within Reach
                             </h6>
-                            <p className="text-sm text-gray-900">
+                            <p className="text-sm ">
                                 Got questions? Our support team is ready 24/7 to help you out. Fast replies, real solutions, and good energy only. Let us handle the stress so you can focus on what matters.
                             </p>
                         </div>
