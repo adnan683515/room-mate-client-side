@@ -6,10 +6,10 @@ import { Bounce, toast } from 'react-toastify';
 
 const Navber = () => {
 
-    const { user, loading, setUser, handleLogout,mode,setMode } = useContext(AuthContext)
+    const { user, loading, setUser, handleLogout, mode, setMode } = useContext(AuthContext)
     const naviagte = useNavigate()
 
-    
+
 
 
     const logut = () => {
@@ -31,7 +31,7 @@ const Navber = () => {
             })
     }
 
- 
+
 
 
 
@@ -46,7 +46,7 @@ const Navber = () => {
     </>
     return (
         <div>
-            <div id='nv' className={`navbar ${mode ? 'bg-black text-white':'bg-white text-black' } bg-base-100 shadow-sm`}>
+            <div id='nv' className={`navbar ${mode ? 'bg-black text-white' : 'bg-white text-black'} bg-base-100 shadow-sm`}>
                 <div className="navbar-start">
                     <Link to={'/'} className='lg:block hidden'> <span className='text-xl font-semibold text-teal-600'>H</span>om<span className='text-xl font-semibold text-teal-600'>e</span> </Link>
                     <div className="dropdown lg:hidden">
@@ -72,7 +72,10 @@ const Navber = () => {
                 <div className="navbar-end ">
 
 
-                    <button onClick={()=>setMode(!mode)}  className='bg-black text-white mx-3'>click</button>
+                    <div className='flex justify-center items-center mx-3'>
+                        <input onClick={() => setMode(!mode)} type="checkbox" defaultChecked className="toggle toggle-accent" />
+                    </div>
+
                     {
                         loading ? <div className='flex justify-center items-center'>
                             <span className="loading loading-spinner text-success"></span>
@@ -97,7 +100,7 @@ const Navber = () => {
                             <Link to={'/login'} className="bg-teal-600 cursor-pointer  lg:px-4 px-3 py-2 font-semibold rounded-md  text-white">
                                 Login
                             </Link>
-                            <Link to={'/singup'} className="lg:px-4 px-2 cursor-pointer bg-gray-200  py-2 text-teal-600  ml-2 font-semibold rounded-md ">
+                            <Link to={'/singup'} className="sm:px-4 px-1 cursor-pointer bg-gray-200  py-2 text-teal-600  ml-2 font-semibold rounded-md ">
                                 Sing Up
                             </Link>
                         </div>
