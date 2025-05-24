@@ -43,8 +43,8 @@ const UpdateRoomMatePost = () => {
     }
     return (
         <div>
-            <section className="p-12 -mb-13 sm:w-[70%] w-[90%]   mx-auto  ">
-                <form onSubmit={handleUPdate} className={`container rounded-bl-4xl rounded-tr-4xl w-full  ${mode ? "bg-neutral-800 text-white" : "bg-gray-200"}  flex flex-col mx-auto space-y-12`}>
+            <section className="lg:p-12 -mb-13 sm:w-[70%] w-[95%]   mx-auto  ">
+                <form onSubmit={handleUPdate} className={`container rounded-bl-4xl rounded-tr-4xl   ${mode ? "bg-neutral-800 text-white" : "bg-gray-200"}  flex flex-col mx-auto space-y-12`}>
                     <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm ">
                         <div className="space-y-2 col-span-full lg:col-span-1">
                             <p className="font-medium">Update Your Inormation</p>

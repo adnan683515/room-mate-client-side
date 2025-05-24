@@ -111,8 +111,8 @@ const AddToRoomMate = () => {
                                 </select>
                             </div>
                             <div className="col-span-full sm:col-span-3">
-                                <label htmlFor="number" className="text-sm">Contact Number</label>
-                                <input required name='number' id="rent" type="text" placeholder="your contact number" className="w-full rounded-md focus:ring bg-white px-2 py-2 focus:ring-opacity-75  " />
+                                <label htmlFor="number" className="text-sm ">Contact Number</label>
+                                <input required name='number' id="rent" type="text" placeholder="your contact number" className="w-full  text-black rounded-md focus:ring bg-white px-2 py-2 focus:ring-opacity-75  " />
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="des" className="text-sm">Description</label>
