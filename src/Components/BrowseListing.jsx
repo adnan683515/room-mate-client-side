@@ -29,7 +29,7 @@ const BrowseListing = () => {
     return (
         <div>
             <p className='text-red-500'> {error && error} </p>
-            <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+            <div className="container p-2 mx-auto sm:p-4 ">
                 <div className='sm:flex mt-4 sm:mt-0 justify-between'>
                     <h2 className="mb-4 sm:text-2xl text-xl sm:text-start text-center font-semibold leading-tight">All Post showing</h2>
                     <div className='flex gap-2 my-2 sm:my-0'>
