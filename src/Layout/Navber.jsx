@@ -38,8 +38,8 @@ const Navber = () => {
 
     const links = <>
 
-        <NavLink className={'block md:hidden'} to={'/'} >Home</NavLink>
-        <NavLink to={'/addtoroommate'} >Add to Find Roommate </NavLink>
+        <NavLink  to={'/'} >Home</NavLink>
+        <NavLink  to={'/addtoroommate'} >Add to Find Roommate </NavLink>
         <NavLink to={'/browseListing'} >Browse Listing</NavLink>
         <NavLink to={`/mylisting/${user?.email}`} >My Listings</NavLink>
 
