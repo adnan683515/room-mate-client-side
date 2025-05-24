@@ -73,7 +73,7 @@ const Navber = () => {
 
 
                     <div className='flex justify-center items-center mx-3'>
-                        <input onClick={() => setMode(!mode)} type="checkbox" defaultChecked className="toggle toggle-accent" />
+                        <input onClick={() => setMode(!mode)} type="checkbox" defaultChecked className={`toggle bg-white  toggle-accent `} />
                     </div>
 
                     {
