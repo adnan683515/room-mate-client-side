@@ -96,8 +96,8 @@ const Navber = () => {
                                     Logout
                                 </button>
                             </div>
-                        </div> : <div>
-                            <Link to={'/login'} className="bg-teal-600 cursor-pointer  lg:px-4 px-3 py-2 font-semibold rounded-md  text-white">
+                        </div> : <div className='flex flex-col sm:flex-row'>
+                            <Link to={'/login'} className="bg-teal-600 cursor-pointer  lg:px-4 px-2 mb-2 sm:mb-0 py-2 font-semibold rounded-md  text-white">
                                 Login
                             </Link>
                             <Link to={'/singup'} className="sm:px-4 px-1 cursor-pointer bg-gray-200  py-2 text-teal-600  ml-2 font-semibold rounded-md ">

@@ -86,7 +86,7 @@ const Login = () => {
 
                 </div>
 
-                <div className={`sm:w-[80%] md:w-[35%] w-[98%] mx-auto sm:mt-0 mt-10 hover:scale-95 duration-700  border border-teal-200 p-8 rounded-tl-4xl space-y-3 rounded-br-4xl ${mode ? "bg-black" : "bg-gray-200 "} dark:text-gray-800 `}>
+                <div className={`md:w-[50%] sm:[70%]  w-[98%] mx-auto sm:mt-0 mt-10 hover:scale-95 duration-700  border border-teal-200 p-8 rounded-tl-4xl space-y-3 rounded-br-4xl ${mode ? "bg-black" : "bg-gray-200 "} dark:text-gray-800 `}>
                     <h1 className="text-2xl font-bold text-center text-teal-600">Login</h1>
                     <p className='text-red-500 my-1'> {error ? error : ''} </p>
                     <form onSubmit={handleLoginFrom} className="space-y-6 sm:mt-0 mt-10  ">
