@@ -5,10 +5,7 @@ const DisplayRoomMatesPost = ({ roommates, mode }) => {
     const { title, roomtype, location, photo } = roommates
 
 
-    console.log(photo ? photo : "nai")
-    if(photo === 'Htt'){
-        console.log("kire")
-    }
+    
 
     return (
         <div>
