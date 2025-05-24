@@ -5,7 +5,10 @@ const DisplayRoomMatesPost = ({ roommates, mode }) => {
     const { title, roomtype, location, photo } = roommates
 
 
-
+    console.log(photo ? photo : "nai")
+    if(photo === 'Htt'){
+        console.log("kire")
+    }
 
     return (
         <div>
@@ -14,7 +17,7 @@ const DisplayRoomMatesPost = ({ roommates, mode }) => {
                     <div className='flex justify-center items-center'>
                         <img
                             className="w-32 h-32 object-cover rounded-full border-4 border-teal-500 shadow-md"
-                            src={photo}
+                            src={photo!='Htt' ? photo : `https://i.ibb.co/Psm6XvND/images-3.png`}
                             alt="Profile"
                         />
                     </div>
