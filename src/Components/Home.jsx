@@ -7,6 +7,8 @@ import VoteComponents from './VoteComponents';
 import { AuthContext } from '../Provider/AuthContext';
 import { TypeWriter } from './TypeWriter';
 
+
+
 const Home = () => {
 
     const data = useLoaderData()
@@ -49,6 +51,7 @@ const Home = () => {
             <div className='text-center'>
                 <TypeWriter></TypeWriter>
             </div>
+            
             <div className={`sm:w-[70%]  w-[95%]  mx-auto my-4 p-2 flex scale-105`}>
                 <input onChange={(e) => setSearchValue(e.target.value)} placeholder='search roommate by location' type="text" name="search roomate" className='border w-full px-5 sm:py-4 py-2 rounded-l-full border-teal-300' id="" />
                 <button onClick={() => handlesearch()} className='bg-teal-600 sm:px-10 px-4 cursor-pointer text-white font-semibold  rounded-r-full'>search</button>

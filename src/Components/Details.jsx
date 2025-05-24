@@ -144,7 +144,7 @@ export const Details = () => {
                         }
 
                         <div className="flex justify-center items-center">
-                            <h1>  <span className="">Total Likes</span> : {detailsData?.like} </h1>
+                            <h1>  <span className="">People interested</span> : {detailsData?.like} </h1>
                         </div>
                     </div>
                     <div className="mt-2">
