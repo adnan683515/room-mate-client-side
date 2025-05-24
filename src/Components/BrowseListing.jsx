@@ -32,7 +32,7 @@ const BrowseListing = () => {
             <div className="container p-2 mx-auto sm:p-4 ">
                 <div className='sm:flex mt-4 sm:mt-0 justify-between'>
                     <h2 className="mb-4 sm:text-2xl text-xl sm:text-start text-center font-semibold leading-tight">All Post showing</h2>
-                    <div className='flex gap-2 my-2 sm:my-0'>
+                    <div className='flex flex-col sm:flex-row  gap-2 my-2 sm:my-0'>
                         <div className='flex justify-center items-center'>
                             <input onChange={(e) => setSearchValue(e.target.value)} className='px-2 py-1 rounded-tl-xl rounded-br-xl border  border-teal-500' placeholder='search by location' type="text" name="search" id="" />
                         </div>
