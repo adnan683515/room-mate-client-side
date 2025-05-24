@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaPenToSquare } from 'react-icons/fa6';
 import { FcFullTrash } from 'react-icons/fc';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../Provider/AuthContext';
 const DisplayMylisting = ({ listdata, alldata, setAlldata }) => {
 
-
+    const {mode} =  useContext(AuthContext)
     // https://roomate-server-side.vercel.app/roommate/682da1f85da4ce1102665eaa
 
     const handleDelete = (id) => {
@@ -50,7 +51,7 @@ const DisplayMylisting = ({ listdata, alldata, setAlldata }) => {
 
     const { title, location, roomtype, rent, like } = listdata
     return (
-        <tr className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
+        <tr className={`border-b  ${mode ? "text-white":"text-black"} border-opacity-20`}>
             <td className="p-3">
                 <p> {title.slice(0, 20)}</p>
             </td>
@@ -59,17 +60,17 @@ const DisplayMylisting = ({ listdata, alldata, setAlldata }) => {
             </td>
             <td className="p-3">
 
-                <p className="dark:text-gray-600"> {roomtype} </p>
+                <p className=""> {roomtype} </p>
             </td>
             <td className="p-3">
 
-                <p className="dark:text-gray-600"> {rent} </p>
+                <p className=""> {rent} </p>
             </td>
             <td className="p-3 text-right">
                 <p > {like && like} Likes </p>
             </td>
             <td className="p-3 text-right">
-                <div className="px-3 py-1 flex font-semibold rounded-md dark:bg-fuchsia-600 dark:text-gray-50">
+                <div className="px-3 py-1 flex font-semibold rounded-md  ">
                     <Link to={`/updateroomMate/${listdata?._id}`}> <FaPenToSquare size={30} />   </Link>
                     <span> <FcFullTrash onClick={() => handleDelete(listdata?._id)} size={30} /> </span>
                 </div>
