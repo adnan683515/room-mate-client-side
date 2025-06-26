@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { Bounce, toast } from 'react-toastify';
 
 const Dashboard = () => {
-    const { user, mode, setMode, handleLogout, setUser } = useContext(AuthContext);
+    const { mode, setMode, handleLogout, setUser } = useContext(AuthContext);
     const [collapsed, setCollapsed] = useState(false);
     const navigate = useNavigate()
     const toggleSidebar = () => setCollapsed(!collapsed);
@@ -62,11 +62,7 @@ const Dashboard = () => {
                     </button>
                 </div>
 
-                {/* <div className={`avatar ${collapsed ? "hidden" : 'block'}`}>
-                    <div className="ring-primary flex justify-center items-center ring-offset-base-100 w-24 rounded-full ring-2 ring-offset-2">
-                        <img src={user?.photoURL} />
-                    </div>
-                </div> */}
+
 
                 <motion.ul className="space-y-3 relative h-full">
                     <li className="flex items-center gap-2 cursor-pointer hover:text-black">
@@ -89,21 +85,11 @@ const Dashboard = () => {
                         </Link>
                     </li>
 
-
-
-                    <li className="flex items-center gap-2 cursor-pointer hover:text-black">
-                        <Link
-                            to={`/deshboard/mylisting`}
-                            className="flex gap-2"
-                        >
-                            <List size={18} /> <span className={`${textVisibility} text-white`}>My Post</span>
-                        </Link>
-                    </li>
                     {
                         !collapsed && <li className={`hidden md:block cursor-pointer ${mode ? 'hover:text-white' : 'hover:text-black text-white'} `}>
                             <select onChange={() => setMode(!mode)} className={`w-full  border-none ${mode ? 'bg-neutral-800 text-white' : ' bg-none text-black'}`} name="Theme" id="">
-                                <option value="">Light</option>
-                                <option value="">Dark</option>
+                                <option value={false}>Light</option>
+                                <option value={true}>Dark</option>
 
                             </select>
 

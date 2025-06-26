@@ -54,15 +54,10 @@ const AddToRoomMate = () => {
 
     return (
         <div>
-
-
-            <section className="py-15 sm:w-[70%]   mx-auto   ">
+            <section className="py-15 sm:w-[70%]  mx-auto   ">
                 <form  onSubmit={handleAddtoFindForm} className={`container rounded-bl-4xl rounded-tr-4xl w-full  ${mode ? "bg-neutral-800 text-white": "bg-gray-200"}  flex flex-col mx-auto space-y-12`}>
-                    <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm ">
-                        <div className="space-y-2 col-span-full lg:col-span-1">
-                            <p className="font-medium">Your Inormation</p>
-                            <p className="text-xs">We’ll use your preferences to help match you with the perfect roommate. Stay tuned — your future bestie might be just around the corner 👀✨</p>
-                        </div>
+                    <fieldset className="grid  gap-2 p-6 rounded-md shadow-sm ">
+                        
                         <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="title" className="text-sm">Title </label>

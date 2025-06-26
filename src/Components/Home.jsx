@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Hero from './Hero';
 import { useLoaderData } from 'react-router';
 import DisplayRoomMatesPost from './DisplayRoomMatesPost';
@@ -8,6 +8,7 @@ import { AuthContext } from '../Provider/AuthContext';
 import { TypeWriter } from './TypeWriter';
 import { motion } from 'framer-motion';
 import { Ourservices } from './Service/Ourservices';
+import Slider from './Slider/Slider';
 
 
 
@@ -20,6 +21,11 @@ const Home = () => {
     const [searchValue, setSearchValue] = useState("")
     const [error, setError] = useState("")
     const { mode } = useContext(AuthContext)
+    const commentRef = useRef(null);
+
+    const scrollToComments = () => {
+        commentRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
 
     useEffect(() => {
         setRoommates(data)
@@ -32,7 +38,7 @@ const Home = () => {
     const handlesearch = () => {
 
         setError("")
-        fetch(`https://roomate-server-side.vercel.app/allMates/${searchValue}`)
+        fetch(`https://roomate-server-side.vercel.app/allMatesss?search=${searchValue}`)
             .then((res) => res.json())
             .then((data) => {
                 setRoommates(data)
@@ -46,22 +52,26 @@ const Home = () => {
     return (
         <div className={`${mode ? "bg-black text-white" : "bg-white text-black"}`}>
 
-            <Hero></Hero>
-            <p className='text-red-500'>
-                {error && error}
-            </p>
-            <div className='text-center'>
-                <TypeWriter></TypeWriter>
+            {/* <Hero></Hero> */}
+
+
+            <div className='mb-2'>
+                <Slider onGetStartedClick={scrollToComments}></Slider>
             </div>
+
+            {/* <div className='text-center my-2'>
+                <TypeWriter></TypeWriter>
+            </div> */}
 
             <div className={`sm:w-[70%]  w-[95%]  mx-auto my-4 p-2 flex scale-105`}>
                 <input onChange={(e) => setSearchValue(e.target.value)} placeholder='search roommate by location' type="text" name="search roomate" className='border w-full px-5 sm:py-4 py-2 rounded-l-full border-teal-300' id="" />
                 <button onClick={() => handlesearch()} className='bg-teal-600 sm:px-10 px-4 cursor-pointer text-white font-semibold  rounded-r-full'>search</button>
             </div>
-            <div className='my-10 sm:w-[96%]  w-[98%] mx-auto grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 gap-2'>
+            <div ref={commentRef} className='my-10 sm:w-[96%]  w-[98%] mx-auto grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 gap-2'>
                 {
                     roommates.length ? roommates?.map((post, index) => (
                         <motion.div
+
                             key={post._id}
                             initial={{ opacity: 0, y: 70 }}
                             whileInView={{ opacity: 1, y: 0 }}

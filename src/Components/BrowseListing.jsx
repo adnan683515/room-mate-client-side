@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import TableDisplayrow from './TableDisplayrow';
 import All_room_matesLayout from './All-Room-mates/All_room_matesLayout';
+import axios from 'axios';
+import { AuthContext } from '../Provider/AuthContext';
 
 const BrowseListing = () => {
 
@@ -9,6 +11,7 @@ const BrowseListing = () => {
     const [load, setLoading] = useState(false)
     const [error, setError] = useState("")
     const result = useLoaderData()
+    const { mode } = useContext(AuthContext)
 
 
     useEffect(() => {
@@ -30,9 +33,56 @@ const BrowseListing = () => {
             )
     }
 
+    const handleRating = (value) => {
+        // https://roomate-server-side.vercel.app/allMatesss
+        axios.get(`https://roomate-server-side.vercel.app/allMatesss?rating=${parseInt(value)}`)
+            .then((res) => {
+                console.log(res)
+            })
+            .then((err) => {
+                console.log(err)
+            })
+    }
+
+    const handleRoomtype = (value) => {
+
+        axios.get(`https://roomate-server-side.vercel.app/allMatesss?roomType=${value}`)
+            .then((res) => {
+
+                setData(res?.data)
+
+            })
+            .then((err) => {
+                console.log(err)
+            })
+    }
+
     return (
-        <div className=''>
-            <p className='text-red-500'> {error && error} </p>
+        <div className='-mb-14 pb-20 relative overflow-hidden'>
+
+            <div
+                className="relative w-[98%] mx-auto h-[60vh] bg-center bg-cover"
+                style={{
+                    borderRadius:'6px',
+                    backgroundImage: `url('https://i.ibb.co/M5CQzr1d/pexels-fauxels-3184419.jpg')`,
+                }}
+            >
+                {/* Overlay */}
+                <div className={`absolute inset-0 ${mode ? 'bg-black/60' : 'bg-white/10  '}`}></div>
+
+                {/* Centered Text */}
+                <div className="relative overflow-hidden  flex flex-col items-center justify-center text-center h-full px-4 md:px-8">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 leading-snug">
+                        Welcome to the <span className="text-teal-400">All Rooms</span> Page
+                    </h2>
+                    <p className="text-sm sm:text-base md:text-lg max-w-2xl">
+                        Explore different types of rooms and find what suits your preferences. Use the filters and search to narrow down your options.{' '}
+                        <span className="text-orange-400 font-semibold">Let’s find your perfect stay!</span>
+                    </p>
+                </div>
+            </div>
+
+
             <div className=" p-2 mx-auto sm:p-4 ">
                 <div className='sm:flex mt-4 sm:mt-0 justify-between'>
                     <h2 className="mb-4 sm:text-2xl text-xl sm:text-start text-center font-semibold leading-tight">All Post showing</h2>
@@ -48,39 +98,7 @@ const BrowseListing = () => {
                         </div>
                     </div>
                 </div>
-                {/* <div className="overflow-x-auto">
-                    <table className="w-full p-6  text-xs text-left whitespace-nowrap">
-                        <colgroup>
-                            <col className="w-5" />
-                            <col />
-                            <col />
-                            <col />
-                            <col />
-                            <col />
-                            <col className="w-5" />
-                        </colgroup>
-                        <thead>
-                            <tr className="bg-teal-600 ">
 
-                                <th className="p-3">Name</th>
-                                <th className="p-3">title</th>
-                                <th className="p-3">Location</th>
-                                <th className="p-3">Room type</th>
-                                <th className="p-3">Available</th>
-                                <th className="p-3">Action</th>
-
-                            </tr>
-                        </thead>
-
-                        {
-                            data.map((item) => <TableDisplayrow mates={item} key={item?._id} ></TableDisplayrow>)
-                        }
-
-
-
-
-                    </table>
-                </div> */}
                 <div>
                     {
                         // data?.length === 0 && <div className="flex w-[100%] mx-auto  flex-col items-center justify-center py-10">
@@ -100,7 +118,7 @@ const BrowseListing = () => {
                 </div>
 
                 <div>
-                    <All_room_matesLayout load={load} data={data}></All_room_matesLayout>
+                    <All_room_matesLayout handleRoomtype={handleRoomtype} handleRating={handleRating} load={load} data={data}></All_room_matesLayout>
                 </div>
 
 

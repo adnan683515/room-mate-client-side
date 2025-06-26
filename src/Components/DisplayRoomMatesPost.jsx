@@ -34,7 +34,7 @@ const DisplayRoomMatesPost = ({ roommates, mode }) => {
                     </div>
 
 
-                    <div className="flex justify-center pt-2">
+                    <div className="flex  justify-center pt-2">
                         <Link
                             to={`/details/${roommates?._id}`}
                             className="px-5 py-2 bg-teal-500 text-white font-semibold rounded-full hover:bg-teal-600 transition-all duration-200"

@@ -12,7 +12,7 @@ const DeshNavber = () => {
 
 
       <div className='flex justify-center  items-center'>
-        <h1 className='text-xl font-semibold'> <span className='text-teal-600 '>Room</span> Mates</h1>
+        <h1 className={`text-xl font-semibold  ${mode ? 'text-orange-400':''}`}> <span className='text-teal-600 '>Room</span> Mates</h1>
       </div>
       <div className='flex justify-center items-center'>
         <div className='flex gap-1'>

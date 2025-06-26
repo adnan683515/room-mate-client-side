@@ -15,12 +15,12 @@ export const ExtraFeature = () => {
                 initial={{ opacity: 0, x: -100 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{
-                    duration: 1,
+                    duration: .5,
                     ease: "easeOut",
                     type: "spring",
                     stiffness: 80,
                 }}
-                viewport={{ once: false, amount: 0.3 }}
+                viewport={{ once: false, amount: 0.6 }}
                 className="mb-12 text-center"
             >
                 <p className={`inline-block px-3 py-1 mb-4 text-xs font-semibold uppercase rounded-full ${bgBadge}`}>

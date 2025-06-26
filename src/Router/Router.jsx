@@ -8,11 +8,13 @@ import PrivetRouter from "../Privet/PrivetRouter";
 import AddToRoomMate from "../Components/AddToRoomMate";
 import Mylisting from "../Components/Mylisting";
 import BrowseListing from "../Components/BrowseListing";
-import { Details } from "../Components/Details";
+
 import UpdateRoomMatePost from "../Components/UpdateRoomMatePost";
 import ForgetPassword from "../Components/ForgetPassword";
 import DeshBoard from "../Components/DeshBoard/DeshBoard";
 import DeshStatics from "../Components/DeshBoard/DeshStatics";
+import { Details } from "../Components/Details";
+
 
 
 
@@ -106,7 +108,6 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/deshboard/mylisting",
-
                 hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
                     <span className="loading loading-spinner text-teal-600"></span>
                 </div>,
