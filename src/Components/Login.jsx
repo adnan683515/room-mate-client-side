@@ -76,7 +76,7 @@ const Login = () => {
 
 
 
-                        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+                        <div className="relative  flex flex-col items-center justify-center h-full text-center px-4">
                             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Find Your <span className=''>Perfect</span>  Roommate</h1>
                             <p className="text-base sm:text-lg md:text-xl max-w-xl">
                                 Discover chill people to share your space with. No drama, just good vibes.

@@ -30,20 +30,21 @@ const Navber = () => {
         <>
             <NavLink className={'block lg:hidden'} to={'/'}>Home</NavLink>
             <NavLink to={'/browseListing'}>Browse Listing</NavLink>
-
+            <NavLink to={'/'}>Ourservice</NavLink>
+            <NavLink to={'/'}>Cetegory</NavLink>
+            <NavLink to={'/'}>About Us</NavLink>
+            <NavLink to={'/'}>Contact Us</NavLink>
             {
-                user && <>
-
-                
+                user && (
                     <NavLink to={`/deshboard`}>Deshboard</NavLink>
-                </>
+                )
             }
         </>
     );
 
     return (
-        <div id="nv"
-            className={`navbar fixed  w-full mx-auto max-w-screen z-10 px-4 ${mode ? 'bg-teal-600 text-white' : 'bg-teal-600 text-black'} shadow-sm`}>
+        <div
+            className={`navbar fixed w-full mx-auto max-w-screen z-10 px-4 ${mode ? 'bg-teal-600 text-white' : 'bg-teal-600 text-black'} shadow-sm`}>
             <div className="navbar-start">
                 <Link to={'/'} className="lg:block hidden">
                     <span className="text-xl font-semibold text-teal-600">H</span>om<span className="text-xl font-semibold text-teal-600">e</span>
@@ -61,48 +62,53 @@ const Navber = () => {
                     </ul>
                 </div>
             </div>
+
             <div className="navbar-center hidden md:block lg:block">
                 <div className="flex gap-4">
                     {links}
                 </div>
             </div>
+
             <div className="navbar-end">
                 <div className="flex justify-center items-center mx-3">
                     <input onClick={() => setMode(!mode)} type="checkbox" defaultChecked className="toggle bg-white toggle-accent" />
                 </div>
+
                 {loading ? (
                     <div className="flex justify-center items-center">
                         <span className="loading loading-spinner text-success"></span>
                     </div>
                 ) : user ? (
-                    <div className="flex items-center">
-                        <div className="flex justify-center items-center">
-                            <div data-tip={user?.displayName} className="avatar tooltip tooltip-bottom">
-                                <div className="ring-success ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
-                                    {user?.photoURL ? (
-                                        <img src={user?.photoURL} alt="User" />
-                                    ) : (
-                                        <span className="loading loading-spinner text-success"></span>
-                                    )}
-                                </div>
+                    <div className="flex items-center gap-2">
+                        <div className="avatar tooltip tooltip-bottom" data-tip={user?.displayName}>
+                            <div className="w-10 rounded-full ring-2 ring-offset-2 ring-success">
+                                {user?.photoURL ? (
+                                    <img src={user?.photoURL} alt="User" />
+                                ) : (
+                                    <span className="loading loading-spinner text-success"></span>
+                                )}
                             </div>
                         </div>
-                        <div className="flex justify-center items-center">
-                            <button
-                                onClick={logout}
-                                className="lg:px-4 px-2 cursor-pointer bg-gray-200 py-2 text-teal-600 ml-2 font-semibold rounded-md"
-                            >
-                                Logout
-                            </button>
-                        </div>
+                        <button
+                            onClick={logout}
+                            className="px-4 py-2 bg-gray-200 text-teal-600 font-semibold rounded-md hover:bg-gray-300 transition"
+                        >
+                            Logout
+                        </button>
                     </div>
                 ) : (
-                    <div className="flex flex-col sm:flex-row">
-                        <Link to={'/login'} className="bg-teal-600 cursor-pointer lg:px-4 px-2 mb-2 sm:mb-0 py-2 font-semibold rounded-md text-white">
+                    <div className="flex items-center gap-2">
+                        <Link
+                            to="/login"
+                            className="text-sm px-4 py-2 border border-amber-50 rounded-md font-semibold text-white transition"
+                        >
                             Login
                         </Link>
-                        <Link to={'/singup'} className="sm:px-4 px-1 cursor-pointer bg-gray-200 py-2 text-teal-600 ml-2 font-semibold rounded-md">
-                            Sign Up
+                        <Link
+                            to="/signup"
+                            className="text-sm px-4 py-2 rounded-md font-semibold text-teal-600 bg-white hover:bg-gray-100 transition"
+                        >
+                            Register
                         </Link>
                     </div>
                 )}
