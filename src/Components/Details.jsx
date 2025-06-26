@@ -1,166 +1,159 @@
-
-
 import { useParams } from "react-router";
 import { AiTwotoneLike } from "react-icons/ai";
-import { AiFillLike } from "react-icons/ai";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthContext";
-
-
-
+import { motion } from "framer-motion";
 
 export const Details = () => {
+    const params = useParams();
+    const [like, setLike] = useState(false);
+    const [detailsData, setDetailsDta] = useState({});
+    const { user, loading, mode } = useContext(AuthContext);
 
-    const params = useParams()
-
-    const [like, setLike] = useState(false)
-    const [detailsData, setDetailsDta] = useState({})
-    const { user, loading, mode } = useContext(AuthContext)
-
-    const { photo, title, des, location, rent, roomtype, life, Availability, _id, number, email, username } = detailsData
-
-    console.log(user?.email, email)
+    const {
+        photo,
+        title,
+        des,
+        location,
+        rent,
+        roomtype,
+        life,
+        Availability,
+        _id,
+        number,
+        email,
+        username,
+    } = detailsData;
 
     useEffect(() => {
-        document.getElementById('titles').innerText = "Details Page"
-    }, [])
+        document.getElementById("titles").innerText = "Details Page";
+    }, []);
 
     useEffect(() => {
         fetch(`https://roomate-server-side.vercel.app/allMatess/${params?.id}`)
             .then((res) => res.json())
-            .then((data) => {
-                setDetailsDta(data)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }, [like])
-    useEffect(() => {
-        fetch(`https://roomate-server-side.vercel.app/likes/${params?.id}/${user?.email}`)
-            .then((res) => res.json())
-            .then((result) => {
-                console.log(result)
-
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }, [])
-
-
-
-
+            .then((data) => setDetailsDta(data))
+            .catch((error) => console.log(error));
+    }, [like]);
 
     const handleUpdateLike = (id) => {
-        const updateData = detailsData
+        const updateData = detailsData;
         fetch(`https://roomate-server-side.vercel.app/roommate/${id}`, {
             method: "PATCH",
             headers: {
-                "Content-type": "application/json"
+                "Content-type": "application/json",
             },
-            body: JSON.stringify(updateData)
+            body: JSON.stringify(updateData),
         })
             .then((res) => {
-                if (res.ok) {
-                    res.json()
-                    setLike(!like)
-                }
+                if (res.ok) setLike(!like);
             })
-            .then((data) => {
-                if (data?.modifiedCount) {
-                    setLike(!like)
-                    // const email = user?.email
-                    // const likeinfo = { roommate_id: id, email }
-                    // fetch('https://roomate-server-side.vercel.app/likes', {
-                    //     method: "POST",
-                    //     headers: {
-                    //         "Content-type": "application/json"
-                    //     },
-                    //     body: JSON.stringify(likeinfo)
-                    // })
-                    //     .then((respon) => respon.json())
-                    //     .then(() => {
-
-                    //     })
-                    //     .catch((error) => {
-                    //         console.log(error)
-                    //     })
-                }
-
-
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
+            .catch((error) => console.log(error));
+    };
 
     return (
-        <div className="px-4  py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20 -mb-13">
-            <div className="grid gap-5 row-gap-8 lg:grid-cols-2">
-                <div className="flex flex-col justify-center">
-                    <div className="max-w-xl mb-6">
-                        <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight  sm:text-4xl sm:leading-none">
-                            {title}
-                            <br className="hidden md:block" />
-
-
+        <motion.div
+            initial={{ opacity: 0, y: 70 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, type: "spring" }}
+            className={`px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-12 lg:px-8 lg:py-20 ${mode ? "bg-black text-white" : "bg-white text-black"
+                }`}
+        >
+            <div className="grid gap-10 lg:grid-cols-2 items-center">
+                {/* Text Section */}
+                <motion.div
+                    initial={{ opacity: 0, x: -40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                    className="flex flex-col justify-center"
+                >
+                    <div className="mb-6">
+                        <h2
+                            className={`text-4xl font-bold mb-4 ${mode ? "text-teal-400" : "text-teal-600"
+                                }`}
+                        >
+                            🏠 {title}
                         </h2>
-                        <p className="text-base  md:text-lg">
+                        <p className={`text-lg ${mode ? "text-gray-300" : "text-gray-700"}`}>
                             {des}
                         </p>
                     </div>
-                    <div className="grid gap-5 row-gap-8 sm:grid-cols-2">
-                        <div className=" border-l-4 shadow-sm border-deep-purple-accent-400">
-                            <div className="h-full p-5 border border-l-0 rounded-r">
-                                <h6 className="mb-2 font-semibold leading-5">
-                                    Location: {location}
-                                </h6>
-                                <p className="text-sm ">
-                                    Rent Amount: {rent}
-                                </p>
-                                <p className="text-sm">
-                                    Room Type: {roomtype}
-                                </p>
-                            </div>
-                        </div>
-                        <div className=" border-l-4 shadow-sm border-deep-purple-accent-400">
-                            <div className="h-full p-5 border border-l-0 rounded-r">
-                                <h6 className="mb-2 font-semibold leading-5">
-                                    username: {username}
-                                </h6>
-                                <p className="text-sm ">
-                                    Life Style: {life}
-                                </p>
-                                <p className="text-sm my-2 rounded-md  bg-green-500 px-2 py-2">
-                                    Availability: <span className="text-white">{Availability}</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="mt-2 flex gap-2 ">
 
-                        {
-                            loading ? "asdfasfsda" : user?.email !== email && <AiTwotoneLike onClick={() => handleUpdateLike(_id)} className="cursor-pointer" size={40} ></AiTwotoneLike>
-                        }
+                    <div className="grid gap-4 sm:grid-cols-2">
+                        <div
+                            className={`border-l-4 rounded-lg p-4 shadow-md ${mode
+                                ? "bg-zinc-900 border-teal-500 text-white"
+                                : "bg-gray-100 border-teal-600 text-black"
+                                }`}
+                        >
+                            <h6 className="font-semibold text-lg mb-1">📍 Location: {location}</h6>
+                            <p>🛏️ Room Type: {roomtype}</p>
+                            <p>💰 Rent: {rent}</p>
+                        </div>
 
-                        <div className="flex justify-center items-center">
-                            <h1>  <span className="">People interested</span> : {detailsData?.like} </h1>
+                        <div
+                            className={`border-l-4 rounded-lg p-4 shadow-md ${mode
+                                ? "bg-zinc-900 border-green-500 text-white"
+                                : "bg-gray-100 border-green-600 text-black"
+                                }`}
+                        >
+                            <h6 className="font-semibold text-lg mb-1">👤 Posted By: {username}</h6>
+                            <p>Life Style: {life}</p>
+                            <p
+                                className={`mt-1 rounded px-2 py-1 inline-block text-white ${Availability === "Available"
+                                    ? "bg-green-500"
+                                    : "bg-red-500"
+                                    }`}
+                            >
+                                Availability: {Availability}
+                            </p>
                         </div>
                     </div>
-                    <div className="mt-2">
-                        {
-                            like && `Contact Number : ${number}`
-                        }
+
+                    {/* Like section */}
+                    <div className="mt-6 flex items-center gap-4">
+                        {loading ? (
+                            <span>Loading...</span>
+                        ) : (
+                            user?.email !== email && (
+                                <AiTwotoneLike
+                                    size={38}
+                                    className={`cursor-pointer transition duration-300 ${mode ? "text-teal-300 hover:text-teal-500" : "text-teal-600 hover:text-teal-800"
+                                        }`}
+                                    onClick={() => handleUpdateLike(_id)}
+                                />
+                            )
+                        )}
+                        <h1 className="text-lg font-medium">
+                            People Interested:{" "}
+                            <span className={`${mode ? "text-green-400" : "text-teal-700"}`}>
+                                {detailsData?.like}
+                            </span>
+                        </h1>
                     </div>
-                </div>
-                <div>
+
+                    {/* Contact after like */}
+                    <div className="mt-3 text-lg font-semibold text-green-500">
+                        📞 Contact Number: {number}
+                    </div>
+
+                </motion.div>
+
+                {/* Image Section */}
+                <motion.div
+                    initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                    viewport={{ once: true }}
+                >
                     <img
-                        className="object-cover rounded-bl-4xl rounded-tr-4xl w-full h-56  shadow-lg sm:h-96"
                         src={photo}
-                        alt=""
+                        alt="Roommate"
+                        className="rounded-2xl w-full h-64 object-cover shadow-xl"
                     />
-                </div>
+                </motion.div>
             </div>
-        </div>
+        </motion.div>
     );
 };

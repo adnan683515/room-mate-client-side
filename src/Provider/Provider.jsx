@@ -9,7 +9,9 @@ const Provider = ({ children }) => {
 
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null)
-    const [mode,setMode] = useState(false)
+    const [mode, setMode] = useState(false)
+
+
     const handleRegister = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
@@ -33,7 +35,6 @@ const Provider = ({ children }) => {
         const unsuscribe = onAuthStateChanged(auth, (curUser) => {
             if (curUser) {
                 setUser(curUser)
-
             }
             setLoading(false)
         })

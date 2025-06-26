@@ -11,6 +11,8 @@ import BrowseListing from "../Components/BrowseListing";
 import { Details } from "../Components/Details";
 import UpdateRoomMatePost from "../Components/UpdateRoomMatePost";
 import ForgetPassword from "../Components/ForgetPassword";
+import DeshBoard from "../Components/DeshBoard/DeshBoard";
+import DeshStatics from "../Components/DeshBoard/DeshStatics";
 
 
 
@@ -52,27 +54,6 @@ export const router = createBrowserRouter([
                 Component: SingUp
             },
             {
-                path: "/addtoroommate",
-                hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
-                    <span className="loading loading-spinner text-success"></span>
-                </div>,
-                element: <PrivetRouter>
-                    <AddToRoomMate></AddToRoomMate>
-                </PrivetRouter>
-
-            },
-            {
-                path: "/mylisting/:email",
-                loader: ({ params }) => fetch(`https://roomate-server-side.vercel.app/mylisting/${params?.email}`),
-                hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
-                    <span className="loading loading-spinner text-success"></span>
-                </div>,
-                element: <PrivetRouter>
-                    <Mylisting></Mylisting>
-                </PrivetRouter>
-
-            },
-            {
                 path: "/browseListing",
                 hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
                     <span className="loading loading-spinner text-success"></span>
@@ -82,7 +63,7 @@ export const router = createBrowserRouter([
 
 
             }, {
-            
+
                 path: "/updateroomMate/:id",
                 loader: (({ params }) => fetch(`https://roomate-server-side.vercel.app/allMatess/${params?.id}`)),
                 hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
@@ -103,5 +84,37 @@ export const router = createBrowserRouter([
         path: "/*",
         Component: Error
 
+    }
+    , {
+        path: "/deshboard",
+        Component: DeshBoard,
+        children: [
+            {
+                path: '/deshboard',
+                element: <DeshStatics></DeshStatics>
+            }
+            ,
+            {
+                path: "/deshboard/addtoroommate",
+                hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
+                    <span className="loading loading-spinner text-success"></span>
+                </div>,
+                element: <PrivetRouter>
+                    <AddToRoomMate></AddToRoomMate>
+                </PrivetRouter>
+
+            },
+            {
+                path: "/deshboard/mylisting",
+
+                hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
+                    <span className="loading loading-spinner text-teal-600"></span>
+                </div>,
+                element: <PrivetRouter>
+                    <Mylisting></Mylisting>
+                </PrivetRouter>
+
+            },
+        ]
     }
 ])

@@ -56,7 +56,7 @@ const AddToRoomMate = () => {
         <div>
 
 
-            <section className="py-15 sm:w-[70%]   mx-auto -mb-13  ">
+            <section className="py-15 sm:w-[70%]   mx-auto   ">
                 <form  onSubmit={handleAddtoFindForm} className={`container rounded-bl-4xl rounded-tr-4xl w-full  ${mode ? "bg-neutral-800 text-white": "bg-gray-200"}  flex flex-col mx-auto space-y-12`}>
                     <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm ">
                         <div className="space-y-2 col-span-full lg:col-span-1">
