@@ -97,8 +97,11 @@ const Dashboard = () => {
                     }
 
 
-                    <li className={`flex  absolute ${collapsed ? 'bottom-25 ' : "bottom-25"} items-center gap-2 cursor-pointer hover:text-black`}>
-                        <User size={18} /> <span className={` ${textVisibility} text-white`}>Profile</span>
+                    <li className={`flex  absolute ${collapsed ? 'bottom-25 ' : "bottom-25"} items-center gap-2  cursor-pointer hover:text-black`}>
+                        <Link className='flex gap-1' to={'/deshboard/myprofile'}>
+                            <User size={18} /> <span className={` ${textVisibility} text-white`}>Profile</span>
+                        </Link>
+
                     </li>
                     <li onClick={logout} className={`flex absolute ${collapsed ? 'bottom-20 ' : "bottom-20"} items-center gap-2 cursor-pointer hover:text-red-500 `}>
                         <LogOut size={18} /> <span className={`  ${textVisibility}`}>Logout</span>

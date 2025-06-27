@@ -9,6 +9,8 @@ import { TypeWriter } from './TypeWriter';
 import { motion } from 'framer-motion';
 import { Ourservices } from './Service/Ourservices';
 import Slider from './Slider/Slider';
+import AboutUs from './About/AboutUs';
+import PromotionSection from './PromotionSection/PromotionSection';
 
 
 
@@ -52,16 +54,12 @@ const Home = () => {
     return (
         <div className={`${mode ? "bg-black text-white" : "bg-white text-black"}`}>
 
-            {/* <Hero></Hero> */}
+
 
 
             <div className='mb-2'>
                 <Slider onGetStartedClick={scrollToComments}></Slider>
             </div>
-
-            {/* <div className='text-center my-2'>
-                <TypeWriter></TypeWriter>
-            </div> */}
 
             <div className={`sm:w-[70%]  w-[95%]  mx-auto my-4 p-2 flex scale-105`}>
                 <input onChange={(e) => setSearchValue(e.target.value)} placeholder='search roommate by location' type="text" name="search roomate" className='border w-full px-5 sm:py-4 py-2 rounded-l-full border-teal-300' id="" />
@@ -104,7 +102,9 @@ const Home = () => {
             <Ourservices></Ourservices>
 
             <ExtraFeature></ExtraFeature>
-            <VoteComponents></VoteComponents>
+            <AboutUs></AboutUs>
+            <PromotionSection></PromotionSection>
+            {/* <VoteComponents></VoteComponents> */}
         </div>
     );
 };

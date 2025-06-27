@@ -20,7 +20,7 @@ export const ExtraFeature = () => {
                     type: "spring",
                     stiffness: 80,
                 }}
-                viewport={{ once: false, amount: 0.6 }}
+                viewport={{ once: true, amount: 0.6 }}
                 className="mb-12 text-center"
             >
                 <p className={`inline-block px-3 py-1 mb-4 text-xs font-semibold uppercase rounded-full ${bgBadge}`}>

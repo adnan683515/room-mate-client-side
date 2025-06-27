@@ -98,7 +98,7 @@ const Login = () => {
                         <div className="space-y-1 text-sm">
                             <label htmlFor="password" className="block dark:text-gray-600">Password</label>
                             <input required type={show ? 'text' : 'password'} name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 bg-white text-black focus:dark:border-fuchsia-600" />
-                            <div className="flex justify-end text-xs dark:text-gray-600">
+                            <div className={`flex justify-end text-xs  ${mode ? 'text-white' : 'text-black'}`}>
                                 <Link to={'/passwordForget'} rel="noopener noreferrer" href="#">Forgot Password?</Link>
                             </div>
                             <div className='flex gap-1'>

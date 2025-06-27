@@ -12,20 +12,28 @@ const BrowseListing = () => {
     const [error, setError] = useState("")
     const result = useLoaderData()
     const { mode } = useContext(AuthContext)
+    const [price, setPrice] = useState([])
 
 
     useEffect(() => {
         setLoading(false)
         setData(result)
+        const filterPrice = result?.map((item) => parseInt(item?.rent))
+        const max = Math.max(...filterPrice)
+        const min = Math.min(...filterPrice)
+        const maxMin = [min, max]
+        setPrice(maxMin)
+
         document.getElementById('titles').innerText = "BroweListing Page"
     }, [result])
 
     const handlesearch = (value) => {
         setError("")
-        fetch(`https://roomate-server-side.vercel.app/allMates/${value}`)
+        fetch(`https://roomate-server-side.vercel.app/allMatesss?search=${value}`)
             .then((res) => res.json())
             .then((found) => {
                 setData(found)
+                console.log(found)
             })
             .catch((error) => {
                 setError(error.message)
@@ -34,7 +42,6 @@ const BrowseListing = () => {
     }
 
     const handleRating = (value) => {
-        // https://roomate-server-side.vercel.app/allMatesss
         axios.get(`https://roomate-server-side.vercel.app/allMatesss?rating=${parseInt(value)}`)
             .then((res) => {
                 console.log(res)
@@ -45,12 +52,37 @@ const BrowseListing = () => {
     }
 
     const handleRoomtype = (value) => {
-
+        // console.log("handle room type", value)
         axios.get(`https://roomate-server-side.vercel.app/allMatesss?roomType=${value}`)
             .then((res) => {
-
                 setData(res?.data)
+            })
+            .then((err) => {
+                console.log(err)
+            })
+    }
+    const handleprice = (value) => {
 
+        try {
+            axios.get(`https://roomate-server-side.vercel.app/allMatesss?price=${value}`)
+                .then((res) => {
+                    console.log(res)
+                })
+
+        }
+        catch {
+            //
+        }
+
+    }
+    const handleLifeStyleOnchange = (value) => {
+        // console.log(encodeURIComponent(value))
+        const encode = encodeURIComponent(value)
+
+        axios.get(`https://roomate-server-side.vercel.app/allMatesss?life=${encode}`)
+            .then((res) => {
+                setData(res?.data)
+                // console.log(res?.data)
             })
             .then((err) => {
                 console.log(err)
@@ -63,7 +95,7 @@ const BrowseListing = () => {
             <div
                 className="relative w-[98%] mx-auto h-[60vh] bg-center bg-cover"
                 style={{
-                    borderRadius:'6px',
+                    borderRadius: '6px',
                     backgroundImage: `url('https://i.ibb.co/M5CQzr1d/pexels-fauxels-3184419.jpg')`,
                 }}
             >
@@ -100,25 +132,11 @@ const BrowseListing = () => {
                 </div>
 
                 <div>
-                    {
-                        // data?.length === 0 && <div className="flex w-[100%] mx-auto  flex-col items-center justify-center py-10">
-                        //     {/* Empty Image from web */}
-                        //     <img
-                        //         src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png"
-                        //         alt="Empty State"
-                        //         className="w-32 h-32 mb-4 opacity-80"
-                        //     />
 
-                        //     {/* Teal Text */}
-                        //     <p className="text-teal-500 text-lg font-medium">
-                        //         No roommates found yet. Try adding someone!
-                        //     </p>
-                        // </div>
-                    }
                 </div>
 
                 <div>
-                    <All_room_matesLayout handleRoomtype={handleRoomtype} handleRating={handleRating} load={load} data={data}></All_room_matesLayout>
+                    <All_room_matesLayout handleLifeStyleOnchange={handleLifeStyleOnchange} handleprice={handleprice} price={price} handleRoomtype={handleRoomtype} handleRating={handleRating} load={load} data={data}></All_room_matesLayout>
                 </div>
 
 

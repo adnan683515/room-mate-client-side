@@ -14,6 +14,7 @@ import ForgetPassword from "../Components/ForgetPassword";
 import DeshBoard from "../Components/DeshBoard/DeshBoard";
 import DeshStatics from "../Components/DeshBoard/DeshStatics";
 import { Details } from "../Components/Details";
+import Myprofile from "../Components/Myprofile/Myprofile";
 
 
 
@@ -49,7 +50,7 @@ export const router = createBrowserRouter([
                 Component: Login
             },
             {
-                path: "/singup",
+                path: "/signup",
                 hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
                     <span className="loading loading-spinner text-success"></span>
                 </div>,
@@ -63,17 +64,6 @@ export const router = createBrowserRouter([
                 loader: () => fetch('https://roomate-server-side.vercel.app/allMatesall'),
                 element: <BrowseListing></BrowseListing>
 
-
-            }, {
-
-                path: "/updateroomMate/:id",
-                loader: (({ params }) => fetch(`https://roomate-server-side.vercel.app/allMatess/${params?.id}`)),
-                hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
-                    <span className="loading loading-spinner text-success"></span>
-                </div>,
-                element: <PrivetRouter>
-                    <UpdateRoomMatePost></UpdateRoomMatePost>
-                </PrivetRouter>
 
             }, {
                 path: "/passwordForget",
@@ -116,6 +106,31 @@ export const router = createBrowserRouter([
                 </PrivetRouter>
 
             },
+            {
+
+                path: "/deshboard/updateroomMate/:id",
+                loader: (({ params }) => fetch(`https://roomate-server-side.vercel.app/allMatess/${params?.id}`)),
+                hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
+                    <span className="loading loading-spinner text-success"></span>
+                </div>,
+                element: <PrivetRouter>
+                    <UpdateRoomMatePost></UpdateRoomMatePost>
+                </PrivetRouter>
+
+            },
+            {
+                path: '/deshboard/myprofile',
+                hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
+                    <span className="loading loading-spinner text-teal-600"></span>
+                </div>,
+                element: <PrivetRouter>
+                    <Myprofile></Myprofile>
+                </PrivetRouter>
+
+            }, {
+                path: '/deshboard/passwordForget',
+                Component: ForgetPassword
+            }
         ]
     }
 ])

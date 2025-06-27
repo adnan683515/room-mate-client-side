@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../Provider/AuthContext';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
 
 const AddToRoomMate = () => {
 
 
-    const { user,mode } = useContext(AuthContext)
-
+    const { user, mode } = useContext(AuthContext)
+    const navi = useNavigate()
     useEffect(() => {
         document.getElementById('titles').innerText = "AddToRoomMate Page"
     }, [])
@@ -33,13 +34,13 @@ const AddToRoomMate = () => {
             .then((res) => res.json())
             .then((data) => {
                 if (data?.insertedId) {
-                    //
                     Swal.fire({
                         title: "congreess! Your Post successfully Done!",
                         icon: "success",
                         draggable: true
                     });
                     e.target.reset()
+                    navi('/deshboard')
                 }
             })
             .catch((error) => {
@@ -55,9 +56,9 @@ const AddToRoomMate = () => {
     return (
         <div>
             <section className="py-15 sm:w-[70%]  mx-auto   ">
-                <form  onSubmit={handleAddtoFindForm} className={`container rounded-bl-4xl rounded-tr-4xl w-full  ${mode ? "bg-neutral-800 text-white": "bg-gray-200"}  flex flex-col mx-auto space-y-12`}>
+                <form onSubmit={handleAddtoFindForm} className={`container rounded-bl-4xl rounded-tr-4xl w-full  ${mode ? "bg-neutral-800 text-white" : "bg-gray-200"}  flex flex-col mx-auto space-y-12`}>
                     <fieldset className="grid  gap-2 p-6 rounded-md shadow-sm ">
-                        
+
                         <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="title" className="text-sm">Title </label>

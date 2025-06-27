@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../Provider/AuthContext';
 import axios from 'axios';
+import DisplayMylistingTr from './DisplayMylistingTr';
+import Swal from 'sweetalert2';
 
 const Mylisting = () => {
     const [laod, setLoad] = useState(true);
     const [alldata, setAlldata] = useState([]);
+
     const { user, mode } = useContext(AuthContext);
 
     useEffect(() => {
@@ -28,6 +31,43 @@ const Mylisting = () => {
     useEffect(() => {
         document.getElementById('titles').innerText = 'Mylisting page';
     }, []);
+
+    const handleDelete = (id) => {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`https://roomate-server-side.vercel.app/roommate/${id}`)
+                    .then((res) => {
+            
+                        if (res?.data?.deletedCount > 0) {
+                            const filterData = alldata?.filter((room) => room?._id !== id)
+
+                            setAlldata(filterData)
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+
+                    })
+                    .catch((err) => {
+                        console.log(err)
+                    })
+
+            }
+        });
+
+
+    }
 
     return (
         <div className="container p-4 mx-auto">
@@ -70,38 +110,7 @@ const Mylisting = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {alldata?.map((item, index) => (
-                                <tr
-                                    key={item._id}
-                                    className={`${mode
-                                            ? index % 2 === 0
-                                                ? "bg-gray-900"
-                                                : "bg-gray-800"
-                                            : index % 2 === 0
-                                                ? "bg-teal-50"
-                                                : "bg-white"
-                                        } hover:${mode ? "bg-gray-700" : "bg-teal-100"
-                                        } transition`}
-                                >
-                                    <td className="py-3 px-4">{item?.title || "N/A"}</td>
-                                    <td className="py-3 px-4">{item?.location || "N/A"}</td>
-                                    <td className="py-3 px-4">${item?.rent || "N/A"}</td>
-                                    <td className="py-3 px-4 text-center">{item?.roomtype || "N/A"}</td>
-                                    <td className="py-3 px-4 text-center flex flex-col sm:flex-row gap-2">
-                                        <Link
-                                            to={`/edit/${item._id}`}
-                                            className="text-sm text-white bg-teal-600 hover:bg-teal-700 px-3 py-1 rounded"
-                                        >
-                                            Edit
-                                        </Link>
-                                        <button
-                                            className="text-sm text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded"
-                                        >
-                                            Delete
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
+                            {alldata?.map((item, index) => <DisplayMylistingTr item={item} mode={mode} index={index} handleDelete={handleDelete}></DisplayMylistingTr>)}
                         </tbody>
                     </table>
                 </div>
