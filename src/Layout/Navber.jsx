@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthContext';
 import { Bounce, toast } from 'react-toastify';
 
 const Navber = () => {
-    const { user, loading, setUser, handleLogout, mode, setMode } = useContext(AuthContext);
+    const { user, aboutUs, loading, promotions, setUser, handleLogout, mode, setMode, handlePromoitns } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const logout = () => {
@@ -26,14 +26,15 @@ const Navber = () => {
             });
     };
 
+
+
     const links = (
         <>
             <NavLink className={'block lg:hidden'} to={'/'}>Home</NavLink>
             <NavLink to={'/browseListing'}>Browse Listing</NavLink>
-            <NavLink to={'/'}>Ourservice</NavLink>
-            <NavLink to={'/'}>Cetegory</NavLink>
-            <NavLink to={'/'}>About Us</NavLink>
-            <NavLink to={'/'}>Contact Us</NavLink>
+
+            <NavLink onClick={() => handlePromoitns(aboutUs)}>About Us</NavLink>
+            <NavLink onClick={() => handlePromoitns(promotions)}>BigOffer</NavLink>
             {
                 user && (
                     <NavLink to={`/deshboard`}>Deshboard</NavLink>

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthContext';
+import { Link } from 'react-router';
 
 const Myprofile = () => {
     const { user, mode } = useContext(AuthContext);
@@ -39,14 +40,14 @@ const Myprofile = () => {
                 {/* User Info */}
                 <div className="text-center space-y-1">
                     <h2 className="text-2xl font-semibold">{user?.displayName || "Anonymous User"}</h2>
-                    <p className="text-sm">{user?.email || "Email not available"}</p>
+                    <p className="text-sm w-[96%] mx-auto ">{user?.email || "Email not available"}</p>
                 </div>
 
                 {/* Button */}
                 <div className="mt-6 flex justify-center">
-                    <button className={`px-5 py-2 rounded-lg font-medium transition ${buttonClass}`}>
+                    <Link to={'/deshboard/passwordForget'} className={`px-5 py-2 rounded-lg font-medium transition ${buttonClass}`}>
                         Forgot Password
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>

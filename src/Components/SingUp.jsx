@@ -88,7 +88,7 @@ const SingUp = () => {
 
                 {/* Signup Form */}
                 <div
-                    className={`hover:scale-95 duration-700 border border-teal-200 p-8 rounded-tl-4xl rounded-br-4xl w-full ${mode ? 'bg-neutral-800' : 'bg-gray-200'
+                    className={`duration-700 border border-teal-200 p-8 rounded-sm w-full ${mode ? 'bg-neutral-800' : 'bg-gray-200'
                         }`}
                 >
                     <h1 className="text-2xl font-bold text-center text-teal-600">Sign up</h1>

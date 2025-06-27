@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+// /deshboard/details/:id
+
+
 const DisplayMylistingTr = ({item, index, mode ,handleDelete}) => {
 
     return (
@@ -26,6 +29,12 @@ const DisplayMylistingTr = ({item, index, mode ,handleDelete}) => {
                     className="text-sm text-white bg-teal-600 hover:bg-teal-700 px-3 py-1 rounded"
                 >
                     Edit
+                </Link>
+                <Link
+                    to={`/deshboard/details/${item?._id}`}
+                    className="text-sm text-black bg-white hover:bg-teal-700 px-3 py-1 rounded"
+                >
+                    View
                 </Link>
                 <button onClick={() => handleDelete(item?._id)}
                     className="text-sm text-white bg-red-500 hover:bg-red-600 px-3 py-1 rounded"

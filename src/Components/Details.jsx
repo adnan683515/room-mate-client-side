@@ -4,6 +4,7 @@ import { FaMapMarkerAlt, FaUser, FaMoneyBillAlt, FaBed, FaPhoneAlt } from "react
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthContext";
 import { motion } from "framer-motion";
+import CommnetBox from "./Comment/CommnetBox";
 
 export const Details = () => {
     const params = useParams();
@@ -59,17 +60,17 @@ export const Details = () => {
     };
 
     return (
-        <div className={`-mb-28 ${mode ? "bg-black text-white" : "bg-white text-black"} min-h-screen px-4 py-16`}>
+        <div className={` w-[97%] mx-auto ${mode ? "bg-black text-white" : "bg-white text-black"}   py-16`}>
             {load ? (
                 <div className="flex justify-center items-center h-[60vh]">
-                    <div className="text-xl font-semibold animate-pulse text-teal-500">Loading...</div>
+                    <div className="sm:text-xl font-semibold animate-pulse text-teal-500">Loading...</div>
                 </div>
             ) : (
                 <motion.div
                     initial={{ opacity: 0, y: 70 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, type: "spring" }}
-                    className="mx-auto max-w-7xl md:px-12 lg:px-8 lg:py-20"
+                    className="mx-auto  md:px-12  lg:py-20"
                 >
                     <div className="grid gap-10 lg:grid-cols-2 items-center">
                         {/* Left: Text Info */}
@@ -80,10 +81,10 @@ export const Details = () => {
                             viewport={{ once: true }}
                             className="space-y-6"
                         >
-                            <h2 className={`text-4xl font-bold ${mode ? "text-teal-400" : "text-teal-600"}`}>
+                            <h2 className={`sm:text-4xl font-bold ${mode ? "text-teal-400" : "text-teal-600"}`}>
                                 🏠 {title}
                             </h2>
-                            <p className={`text-lg ${mode ? "text-gray-300" : "text-gray-700"}`}>{des}</p>
+                            <p className={`sm:text-lg ${mode ? "text-gray-300" : "text-gray-700"}`}>{des}</p>
 
                             <div className="space-y-3 text-base">
                                 <p className="flex items-center gap-2">
@@ -100,7 +101,7 @@ export const Details = () => {
                                 </p>
                                 <p><strong>Life Style:</strong> {life}</p>
                                 <p>
-                                    <span className={`inline-block px-3 py-1 rounded-full text-white ${Availability === "Available" ? "bg-green-500" : "bg-red-500"}`}>
+                                    <span className={`inline-block px-3 py-1 rounded-full text-white ${Availability === "available" ? "bg-green-500" : "bg-red-500"}`}>
                                         {Availability}
                                     </span>
                                 </p>
@@ -144,7 +145,20 @@ export const Details = () => {
                     </div>
                 </motion.div>
             )}
+
+
+            
+            {/* <div className="flex sm:w-[96%] sm:flex-row  justify-between flex-col">
+                <div className="sm:w-[50%] ">
+                    <CommnetBox className="w-full"></CommnetBox>
+                </div>
+                <div>
+                    Show all comments
+                </div>
+            </div> */}
         </div>
+
+
     );
 
 };

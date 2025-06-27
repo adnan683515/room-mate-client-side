@@ -13,11 +13,12 @@ const BrowseListing = () => {
     const result = useLoaderData()
     const { mode } = useContext(AuthContext)
     const [price, setPrice] = useState([])
-
+    const [order,setOder] = useState("")
 
     useEffect(() => {
         setLoading(false)
         setData(result)
+
         const filterPrice = result?.map((item) => parseInt(item?.rent))
         const max = Math.max(...filterPrice)
         const min = Math.min(...filterPrice)
@@ -25,7 +26,23 @@ const BrowseListing = () => {
         setPrice(maxMin)
 
         document.getElementById('titles').innerText = "BroweListing Page"
-    }, [result])
+    }, [order])
+
+
+    const handleAccendingOrder = (value) => {
+        if (value === 'accending') {
+            const filterAccending = data?.sort((a, b) => parseInt(a.rent) - parseInt(b.rent))
+            console.log("accending", filterAccending)
+            setOder("accending")
+            setData(filterAccending)
+        }
+        else {
+            const filterAccending = data?.sort((a, b) => parseInt(b.rent) - parseInt(a.rent))
+            console.log("decendding", filterAccending)
+            setOder("decendding")
+            setData(filterAccending)
+        }
+    }
 
     const handlesearch = (value) => {
         setError("")
@@ -89,6 +106,9 @@ const BrowseListing = () => {
             })
     }
 
+
+
+
     return (
         <div className='-mb-14 pb-20 relative overflow-hidden'>
 
@@ -136,7 +156,7 @@ const BrowseListing = () => {
                 </div>
 
                 <div>
-                    <All_room_matesLayout handleLifeStyleOnchange={handleLifeStyleOnchange} handleprice={handleprice} price={price} handleRoomtype={handleRoomtype} handleRating={handleRating} load={load} data={data}></All_room_matesLayout>
+                    <All_room_matesLayout handleAccendingOrder={handleAccendingOrder} handleLifeStyleOnchange={handleLifeStyleOnchange} handleprice={handleprice} price={price} handleRoomtype={handleRoomtype} handleRating={handleRating} load={load} data={data}></All_room_matesLayout>
                 </div>
 
 

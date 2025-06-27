@@ -22,7 +22,7 @@ const Home = () => {
     const [roommates, setRoommates] = useState([])
     const [searchValue, setSearchValue] = useState("")
     const [error, setError] = useState("")
-    const { mode } = useContext(AuthContext)
+    const { mode ,handlePromoitns ,promotions } = useContext(AuthContext)
     const commentRef = useRef(null);
 
     const scrollToComments = () => {
@@ -62,7 +62,7 @@ const Home = () => {
             </div>
 
             <div className={`sm:w-[70%]  w-[95%]  mx-auto my-4 p-2 flex scale-105`}>
-                <input onChange={(e) => setSearchValue(e.target.value)} placeholder='search roommate by location' type="text" name="search roomate" className='border w-full px-5 sm:py-4 py-2 rounded-l-full border-teal-300' id="" />
+                <input onChange={(e) => setSearchValue(e.target.value)} placeholder='search roommate by location' type="text" name="search roomate" className={`border w-full px-5 sm:py-4 py-2 rounded-l-full border-teal-300 ${mode ? 'bg-gray-900 text-white':'bg-white text-black'}`} id="" />
                 <button onClick={() => handlesearch()} className='bg-teal-600 sm:px-10 px-4 cursor-pointer text-white font-semibold  rounded-r-full'>search</button>
             </div>
             <div ref={commentRef} className='my-10 sm:w-[96%]  w-[98%] mx-auto grid md:grid-cols-2 sm:grid-cols-2 grid-cols-1 lg:grid-cols-4 gap-2'>
@@ -98,12 +98,12 @@ const Home = () => {
                         </div>
                 }
             </div>
-
+            <PromotionSection promotions={promotions}></PromotionSection>
             <Ourservices></Ourservices>
 
             <ExtraFeature></ExtraFeature>
             <AboutUs></AboutUs>
-            <PromotionSection></PromotionSection>
+
             {/* <VoteComponents></VoteComponents> */}
         </div>
     );

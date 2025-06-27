@@ -10,7 +10,7 @@ export const ExtraFeature = () => {
     const bgBadge = mode ? "bg-teal-700 text-white" : "bg-teal-100 text-teal-800";
     const bgcolour = mode ? 'bg-neutral-800 ' : 'bg-neutral-100'
     return (
-        <div className="py-16 relative  overflow-hidden w-[96%]  mx-auto  lg:px-8 lg:py-20">
+        <div className="py-16 relative  overflow-hidden w-[96%]  mx-auto   lg:py-20">
             <motion.div
                 initial={{ opacity: 0, x: -100 }}
                 whileInView={{ opacity: 1, x: 0 }}

@@ -25,7 +25,7 @@ const slides = [
 
 const Slider = ({ onGetStartedClick }) => {
     return (
-        <div className="w-[96%] mx-auto h-[50vh] sm:h-[80vh] max-h-[700px] overflow-hidden rounded-md">
+        <div className="w-[96%] mx-auto h-[40vh] sm:h-[80vh] max-h-[700px] overflow-hidden rounded-md">
             <AwesomeSlider bullets={false} organicArrows={true} className="h-full">
                 {slides.map((slide, index) => (
                     <div key={index} className="relative w-full h-full">

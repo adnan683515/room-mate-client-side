@@ -130,7 +130,16 @@ export const router = createBrowserRouter([
             }, {
                 path: '/deshboard/passwordForget',
                 Component: ForgetPassword
-            }
+            },
+            {
+                path: '/deshboard/details/:id',
+                hydrateFallbackElement: <div className="flex mt-20 justify-center items-center">
+                    <span className="loading loading-spinner text-success"></span>
+                </div>,
+                element: <PrivetRouter>
+                    <Details></Details>
+                </PrivetRouter>
+            },
         ]
     }
 ])

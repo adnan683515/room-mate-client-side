@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase.init';
@@ -10,7 +10,14 @@ const Provider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null)
     const [mode, setMode] = useState(false)
+    const promotions = useRef(null)
+    const aboutUs = useRef(null)
 
+    const handlePromoitns = (section) => {
+        if (section?.current) {
+            section?.current?.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
 
     const handleRegister = (email, password) => {
         setLoading(true)
@@ -67,7 +74,11 @@ const Provider = ({ children }) => {
         googleSingin,
         handlePassword,
         mode,
-        setMode
+        setMode,
+        handlePromoitns,
+        promotions,
+        aboutUs,
+
     }
     return (
         <AuthContext value={info} >

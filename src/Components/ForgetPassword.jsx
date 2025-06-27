@@ -35,7 +35,7 @@ export default function ForgetPassword() {
     };
 
     return (
-        <div className='pb-30 -mb-15 flex justify-center items-center'>
+        <div className='pb-30 -mb-15 mt-10 flex justify-center items-center'>
             <form onSubmit={handleUpdate} className={`max-w-sm mx-auto w-[80%]  p-6  shadow-md rounded-xl border ${mode ? "bg-netural-800" : "bg-white "} border-teal-300`}>
                 <h2 className="text-2xl font-bold text-teal-700 mb-4">Update Password</h2>
                 <p className='text-red-500 py-2'> {

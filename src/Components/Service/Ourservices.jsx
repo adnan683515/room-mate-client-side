@@ -46,8 +46,10 @@ export const Ourservices = () => {
 
 
     return (
-        <div className="w-[96%] mx-auto py-20   lg:px-8">
+        <div className="w-[96%] mx-auto py-20   ">
             <motion.div
+
+        
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}

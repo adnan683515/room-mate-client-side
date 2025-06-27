@@ -3,10 +3,10 @@ import { AuthContext } from '../../Provider/AuthContext';
 
 
 const AboutUs = () => {
-    const { mode } = useContext(AuthContext);
+    const { mode ,aboutUs } = useContext(AuthContext);
 
     return (
-        <div className={`py-16 w-[94%] mx-auto ${mode ? 'bg-black text-white' : 'bg-gray-100 text-gray-800'}`}>
+        <div ref={aboutUs} className={`pt-16 pb-30 -mb-15 sm:w-[96%]  mx-auto ${mode ? 'bg-black text-white' : 'bg-gray-100 text-gray-800'}`}>
             <div className=" grid md:grid-cols-2 gap-12 items-start">
 
                 {/* 🟩 Left Column: About Us */}

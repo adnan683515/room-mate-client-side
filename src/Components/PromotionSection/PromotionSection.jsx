@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Provider/AuthContext';
 
 
-const PromotionSection = () => {
+const PromotionSection = ({promotions}) => {
     const { mode } = useContext(AuthContext);
 
     return (
-        <div className={`pt-16 pb-30 -mb-15 px-6  md:px-20 ${mode ? 'bg-gray-900 text-white' : 'bg-orange-50 text-gray-900'}`}>
+        <div ref={promotions} className={`pt-16 pb-30 -mb-15 px-6 mt-3 sm:w-[96%] rounded-sm mx-auto  md:px-20 ${mode ? 'bg-gray-900 text-white' : 'bg-orange-50 text-gray-900'}`}>
             <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
 
                 {/* 🖼️ Left: Promo Image */}
